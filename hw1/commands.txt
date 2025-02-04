@@ -1,0 +1,10 @@
+gcc shell.c -o utsh
+utsh$ ls
+utsh$ echo "utsh is cool" > x1.txt
+utsh$ cat < x.txt
+utsh is cool
+utsh$
+
+utsh$ ls | sort | uniq | wc
+     11      11      85
+utsh$
