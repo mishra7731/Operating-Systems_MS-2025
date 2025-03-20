@@ -1,0 +1,4 @@
+export PATH=/home/cs5460/qemu-install/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/sbin:/usr/local/bin:/usr/X11R6/bin:$HOME/bin:$PATH
+
+
+which qemu-system-x86_64
