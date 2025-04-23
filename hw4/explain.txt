@@ -1,0 +1,24 @@
+0x8010b590 <stack+4048>:	0x00010094	0x00010094	0x8010b5b8	0x80102fc1
+0x8010b5a0 <stack+4064>:	0x801154a8	0x80400000	0x00000000	0x00000000
+0x8010b5b0 <stack+4080>:	0x8010b5c4	0x00010094	0x00007bf8	0x00000000
+0x8010b5c0 <bcache>:		0x00000000	0x00000000	0x00000000	0x00000000
+0x8010b5d0 <bcache+16>:	    0x00000000	0x00000000	0x00000000	0x00000000
+0x8010b5e0 <bcache+32>:	    0x00000000	0x00000000	0x00000000	0x00000000
+
+0x00010094: `argv[0]` pointer (to string "sh" in user space)
+0x8010b5b8:  pointer to `argv[]` array in user space
+0x80102fc1:  function entry point of `main` 
+
+0x80400000:  stack pointer
+
+0x8010b5c4:  return address of function 
+0x00010094:  string pointer
+
+
+These explanations were tried to be found by using #si# upto memset function and using command info symbol ##address command. 
+Only the address that I could make sense from the stack has been added here
+
+
+
+
+
