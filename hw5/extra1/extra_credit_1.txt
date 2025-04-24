@@ -1,0 +1,25 @@
+As the disk becomes fuller, any write invokes bmap() function, and eventually uses block allocation (balloc) function.  
+And balloc() takes longer, because it has to scan more blocks to find a free one. 
+In balloc, the file system traverses and searches the block bitmap for a free (0) bit, 
+indicating a free block. When the disk is nearly full, 
+this scanning takes more time, causing each write to slow down progressively.
+
+Mitigating this problem:
+
+An approach could be to keep track of the last allocated block and start the bitmap scan from there 
+instead of always starting at the beginning. Or as discussed in lecture could be to categorize 
+bits in blocks of "Free bits/ untouched", "Partailly used", and "Used bits". This can be done by using hashes or 
+pointers to the separate blocks.
+
+
+Second way to speed up writing (From log.c):
+The second bottleneck comes from how often we commit changes to disk in the logging system.
+
+Currently, in log.c, the file system waits until all active operations finish 
+before committing changes to disk. That means many operations can be delayed if other writes 
+are happening concurrently, especially for large files.
+
+To improve performance we can batch multiple write operations into a single transaction before committing.  
+The functions write_log() and install_trans() each involve disk writes. By batching, we do fewer commits overall.
+This batching strategy is already partly implemented using log.outstanding, 
+but optimizing the commit frequency and batch size (e.g., delaying commit slightly to wait for more writes) could improve throughput.
